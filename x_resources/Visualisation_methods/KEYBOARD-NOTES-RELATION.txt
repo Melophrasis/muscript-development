@@ -1,0 +1,17 @@
+
+
+
+
+
+
+
+Keyboard:
+
+  s   d      g   h   j
+z   x   c  v   b   n   m  
+
+
+Notes:
+
+  c#  d#     f#  g#  a#
+c   d   e  f   g   a   b  c
