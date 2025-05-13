@@ -5,25 +5,31 @@ import ascii_visualiser
 import time
 #from sound_module import play_note
 
+def info():
+    info = """
+        '0 --> Info'
+        '1 --> Keyboard Input'
+        '2 --> String Input'
+        '3 --> File Input'
+            """
+    print(info)
 
 def key_press(key):
+    # msg example : note_on channel=0 note=62 velocity=123 time=0
 
-    # 1. Converts [midi] list to <note>
-    # msg : note_on channel=0 note=62 velocity=123 time=0
+        # 1. Converts [midi] impulse to <note><str>
 
     try:
         note = key.note
         print(note)
     except:
         return None
-
-    # 2. Plays the note sound     
-    #play_note(note)
-
-    #return None
-    # 3. Shows the note on a piano-roll
+    
+        # 2. Shows the note on a piano-roll
     diagram = ascii_visualiser.single_note(note)
 
+    # 2. Plays the note sound - inactive development    
+    #play_note(note)
     print(f'{diagram}')
 
 def key_release(key):
@@ -33,7 +39,10 @@ def key_release(key):
     # eg: diagram = keyb_visualizer.single_note(note, 'off')
     pass
 
-def example_strings():
+def test_strings():
+
+    print("----\nRunning test strings\n----")
+    time.sleep(2)
 
     test_msgs = [
         Message('note_on', channel=0, note=62, velocity=123, time=100),
@@ -44,12 +53,13 @@ def example_strings():
     
     for i in range(len(test_msgs)):
         key_press(test_msgs[i])
+        
         time.sleep(3)
 
 
 def keyboard_input():
 
-                # 0.0 Detects + assigns hardware
+            # 0.0 Detects + assigns hardware
     for device in mido.get_input_names():
         if 'LPK25' in device:
             keyboard = device
@@ -62,20 +72,18 @@ def keyboard_input():
 
 if __name__ == '__main__':
 
-    info = """
-        '0 --> Info'
-        '1 --> Keyboard Input'
-        '2 --> String Input'
-        '3 --> File Input'
+    info()
 
-            """
-    print(info) 
     mode = int(input('Enter Choice: '))
 
-    if mode == '0':
-        example_strings()
+    if mode == 0:
+        pass
 
-    if mode == '1':
+    if mode == 1:
         keyboard_input()
 
-    mode = input('')
+    if mode == 2:
+        test_strings()
+
+
+
